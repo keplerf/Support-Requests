@@ -1,0 +1,39 @@
+<%= form_for @support_request do |f| %>
+
+  <div class="form-group row">
+   <%= f.label(:name, class: "col-xs-2 col-form-label") %>
+   <div class="col-xs-10">
+     <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+   <%= f.label(:email, class: "col-xs-2 col-form-label") %>
+   <div class="col-xs-10">
+     <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+  <%= f.label(:department, class: "col-xs-2 col-form-label") %>
+    <div class="col-xs-10">
+      <%= radio_button("support_request", "department", "sales") %> Sales
+      <%= radio_button("support_request", "department", "marketing") %> Marketing
+      <%= radio_button("support_request", "department", "technical") %> Technical
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <%= f.label(:message, class: "col-xs-2 col-form-label") %>
+    <div class="col-xs-10">
+    <%= f.text_area :message %>
+    </div>
+  </div>
+  <div class="form-group row">
+  <%= f.submit class: "btn btn-success col-xs-offset-2"%>
+  </div>
+
+
+
+<% end  %>

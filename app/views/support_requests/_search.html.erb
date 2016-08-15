@@ -1,0 +1,48 @@
+<%= form_tag('/search', method: :post) do %>
+  <div>
+    <%= label_tag :search_term, "Search term" %>
+    <%= text_field_tag :search_term , "#@search_term"%>
+    <%= submit_tag "Search" , class: "btn btn-default"  %>
+  </div>
+  <hr>
+<% end %>
+
+<% if @search_results %>
+<table class="table table-striped">
+
+
+  <h3></span> Search Results for: "<%= @search_term %>"</h3>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Department</th>
+    <th>Message</th>
+    <th>Actions</th>
+  </tr>
+  <% @search_results.each do |result|  %>
+  <tr <% if result.complete %>
+     <% else %>
+       class="warning"
+     <% end %> >
+    <td><%= result.name %></td>
+    <td><%= result.email %></td>
+    <td><%= result.department %></td>
+    <td><%= result.message[0..35] %></td>
+    <td><%= link_to "Edit", edit_support_request_path(result), class: "btn btn-default btn-xs" %>
+          <%= link_to "Delete", support_request_path(result), method: :delete, class: "btn btn-default btn-xs",
+          data: { confirm: "Are you sure??" } %>
+            <% if result.complete %>
+              <%= link_to("Complete",
+                   support_request_path(result, "support_request[complete]" => false),
+                   class: "btn btn-success btn-xs", method: :put, confirm: { data: "Mark as Complete?"}) %>
+            <% else %>
+            <%= link_to("Incomplete",
+                 support_request_path(result, "support_request[complete]" => true),
+                 class: "btn btn-warning btn-xs", method: :put, confirm: { data: "Mark as Incomplete?"}) %>
+            <% end %>
+    </td>
+
+  </tr>
+  <% end %>
+</table>
+<% end %>

@@ -1,0 +1,59 @@
+<h1>All Support Requests</h1>
+
+<%= render "search" %>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-pills" role="tablist">
+      <li>Marketing  <span class="badge"><%= @dep_count[:marketing] %></span></li>
+      <li>Sales <span class="badge"><%= @dep_count[:sales] %></span></li>
+      <li> Technical <span class="badge"><%= @dep_count[:technical] %></span></li>
+    </ul>
+  </br>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class=" col-md-12">
+
+    <table class="table table-striped">
+      <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Department</th>
+         <th>Message</th>
+         <th>Actions</th>
+       </tr>
+    <% @support_requests.each do |supp| %>
+     <tr>
+       <td><%= supp.name %></td>
+       <td><%= supp.email %></td>
+       <td><%= supp.department %></td>
+       <td><%= supp.message[0..35] %></td>
+       <td><%= link_to "Edit", edit_support_request_path(supp) , class: "btn btn-default btn-xs" %>
+
+             <%= link_to "Delete", support_request_path(supp),
+               method: :delete, class: "btn btn-default btn-xs",
+               data: { confirm: "Are you sure??" } %>
+
+             <% if supp.complete %>
+               <%= link_to("Done",
+                    support_request_path(supp, support_request: { complete: false }),
+                    method: :put, confirm: { data: "Mark as Complete?"}, class: "btn btn-success btn-xs" ) %>
+             <% else %>
+             <%= link_to("Undone",
+                  support_request_path(supp, support_request: { complete: true }),
+                  class: "btn btn-warning btn-xs", method: :put, confirm: { data: "Mark as Incomplete?"}) %>
+             <% end %>
+       </td>
+     </tr>
+     <% end %>
+
+    </table>
+
+    <%= paginate @support_requests %>
+
+  </div>
+</div>

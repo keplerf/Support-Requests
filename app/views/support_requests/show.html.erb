@@ -1,0 +1,8 @@
+<h1>Review a Support Request</h1>
+
+<h3>Name: <%= @support_request.name %></h1>
+<h3>Email: <%= @support_request.email %></p>
+<h4>Department: <%= @support_request.department %></h4>
+<p>Message: <%= @support_request.message %></p>
+<%= link_to "Edit", edit_support_request_path(@support_request), class: "btn btn-default btn-xs" %>
+<%= link_to "Delete", support_request_path(@support_request), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure?"} %>
