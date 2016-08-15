@@ -1,0 +1,31 @@
+body{
+  background: #888c94 !important;
+
+  .seach_box{
+    padding: 10px;
+    background: #616165;
+  }
+
+  #main-container{
+    padding-top: 15px;
+    background: #ececec;
+    max-width: 600px;
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,1);
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,1);
+
+  }
+
+  .nav-pills{
+    float: right;
+    overflow: hidden;
+    padding-bottom: 20px;
+
+    li{
+      padding: 0 5px;
+    }
+
+  }
+
+
+}
